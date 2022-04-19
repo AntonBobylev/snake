@@ -11,7 +11,7 @@ Free to use.
 # Install
 
 - Make a new VS2019 project (I used it) or something else
-- Configure and connet SFML to your project (https://www.sfml-dev.org/)
+- Configure and connect SFML to your project (https://www.sfml-dev.org/)
 - Run x86 application
 
 # Usages
