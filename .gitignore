@@ -8,3 +8,7 @@
 /SFML/readme.md
 /.vs
 /SFML/lib/cmake
+/Debug
+/Release
+/Snake/Release
+/Snake/Debug
