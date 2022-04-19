@@ -17,15 +17,22 @@ public:
 
 public:
 	int16_t getSnakeDirection() const noexcept;
+	Direction getSnakeDirectionEnum() const noexcept;
 	void setSnakeDirection(Direction direction) noexcept;
+	Point getEntityPosition() const noexcept;
 
 	void update();
+
+	void incrementLength() noexcept { this->m_snakeLength++; }
+	int16_t getSnakeLength() const noexcept { return this->m_snakeLength; }
 
 private:
 	void moveSnakeParts();
 
+public:
+	Point m_snakeCoordinates[m_snakeMaxLength];
+
 private:
 	Direction m_direction;
-	Point m_snakeCoordinates[m_snakeMaxLength];
 	int16_t m_snakeLength;
 };

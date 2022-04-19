@@ -2,7 +2,7 @@
 
 int main()
 {
-	SfmlWindow mainWindow{ 600, 600, "Snake: the Game" };
+	SfmlWindow mainWindow{ "Snake: the Game" };
 	mainWindow.mainLoop();
 	return 0;
 }

@@ -1,12 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../class/GameEntities/SnakeEntity/SnakeEntity.hpp"
+#include "../GameEntities/SnakeEntity/SnakeEntity.hpp"
+#include "../GameEntities/FruitEntity/FruitEntity.hpp"
+#include "../PhysicsManager/PhysicsManager.hpp"
 #include <Windows.h>
 
 class SfmlWindow {
 public:
 	SfmlWindow();
-	SfmlWindow(int16_t width, int16_t height, const char* appName);
+	SfmlWindow(const char* appName);
 	~SfmlWindow();
 
 public:
@@ -22,8 +24,8 @@ private:
 	void init();
 
 	void renderWindow();
+	void renderEntities();
 	void handleWindowEvents();
-
 	
 private:
 	// Events
@@ -46,4 +48,6 @@ private:
 
 private:
 	SnakeEntity m_snake;
+	FruitEntity m_fruit;
+	PhysicsManager m_physicsManager;
 };
