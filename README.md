@@ -4,6 +4,10 @@ My snake game implementation using OOP features of C++ programming language with
 
 Free to use.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25329821/164027599-c7eceb57-3115-4c0c-83e8-add864c2b603.png" />
+</p>
+
 # Install
 
 - Make a new VS2019 project (I used it) or something else
