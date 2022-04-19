@@ -1,7 +1,8 @@
-#include "class/App/App.hpp"
+#include "class/SfmlWindow/SfmlWindow.hpp"
 
 int main()
 {
-	App app;
-	return app.go();
+	SfmlWindow mainWindow{ 600, 600, "Snake: the Game" };
+	mainWindow.mainLoop();
+	return 0;
 }

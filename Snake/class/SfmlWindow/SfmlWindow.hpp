@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../class/GameEntities/SnakeEntity/SnakeEntity.hpp"
+#include <Windows.h>
 
 class SfmlWindow {
 public:
@@ -11,6 +13,8 @@ public:
 	int mainLoop();
 
 private:
+	void update();
+
 	bool windowOpened() const noexcept;
 	void closeWindow();
 	void clearWindow(sf::Color color);
@@ -39,4 +43,7 @@ private:
 	int16_t m_windowHeight;
 
 	sf::Color m_defaultWindowColor;
+
+private:
+	SnakeEntity m_snake;
 };

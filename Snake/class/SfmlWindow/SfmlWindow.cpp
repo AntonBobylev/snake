@@ -1,10 +1,11 @@
 #include "SfmlWindow.hpp"
 
-SfmlWindow::SfmlWindow() 
+SfmlWindow::SfmlWindow()
 	: m_windowWidth(500)
 	, m_windowHeight(500)
 	, m_window(sf::VideoMode(500, 500), "App")
 	, m_event()
+	, m_snake()
 {
 	this->init();
 }
@@ -14,6 +15,7 @@ SfmlWindow::SfmlWindow(int16_t width, int16_t height, const char* appName)
 	,m_windowHeight(height)
 	,m_window(sf::VideoMode(width, height), appName)
 	,m_event()
+	,m_snake()
 {
 	this->init();
 }
@@ -25,11 +27,17 @@ int SfmlWindow::mainLoop()
 {
 	while (this->windowOpened()) {
 		this->handleWindowEvents();
+		this->update();
 		this->renderWindow();
 	}
 
 	this->closeWindow();
 	return 0;
+}
+
+void SfmlWindow::update()
+{
+	this->m_snake.update();
 }
 
 bool SfmlWindow::windowOpened() const noexcept
@@ -52,12 +60,19 @@ void SfmlWindow::clearWindow(sf::Color color)
 void SfmlWindow::init()
 {
 	this->m_defaultWindowColor = sf::Color(26, 28, 36);
+	
+	this->m_snake.setEntityTexture("resources/square.png");
+	this->m_snake.setEntityPosition(0, 0);
+	this->m_snake.setEntityColor(sf::Color(255, 122,0));
+
 }
 
 void SfmlWindow::renderWindow()
 {
 	this->clearWindow(this->m_defaultWindowColor);
+	this->m_window.draw(this->m_snake.getEntitySprite());
 	this->m_window.display();
+	//Sleep(500);
 }
 
 void SfmlWindow::handleWindowEvents()
@@ -91,16 +106,16 @@ void SfmlWindow::eventKeyboard()
 		switch (this->m_event.key.code)
 		{
 		case sf::Keyboard::Right:
-			// right arrow logic
+			this->m_snake.setSnakeDirection(Direction::RIGHT);
 			break;
 		case sf::Keyboard::Left:
-			// left arrow logic
+			this->m_snake.setSnakeDirection(Direction::LEFT);
 			break;
 		case sf::Keyboard::Down:
-			// down arrow logic
+			this->m_snake.setSnakeDirection(Direction::DOWN);
 			break;
 		case sf::Keyboard::Up:
-			// up arrow logic
+			this->m_snake.setSnakeDirection(Direction::UP);
 			break;
 		default:
 			break;
