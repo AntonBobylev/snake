@@ -51,8 +51,6 @@ void SnakeEntity::update()
 	default:
 		break;
 	}
-
-	
 }
 
 void SnakeEntity::moveSnakeParts()

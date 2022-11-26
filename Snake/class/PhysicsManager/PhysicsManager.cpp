@@ -6,12 +6,16 @@ void PhysicsManager::checkSnakeCollisions(SnakeEntity* snake, FruitEntity* fruit
 	GameEntity::Point fruitPosition = fruit->getEntityPosition();
 
 	sf::Rect<int> snakeRect(snake->getEntitySprite().getTextureRect());
-	snakeRect.left = snakePosition.x;
-	snakeRect.top = snakePosition.y;
+
+	// TODO: refactoring is needed. static_cast should be removed
+	snakeRect.left = static_cast<int>(snakePosition.x);
+	snakeRect.top = static_cast<int>(snakePosition.y);
 
 	sf::Rect<int> fruitRect(fruit->getEntitySprite().getTextureRect());
-	fruitRect.left = fruitPosition.x;
-	fruitRect.top = fruitPosition.y;
+
+	// TODO: refactoring is needed. static_cast should be removed
+	fruitRect.left = static_cast<int>(fruitPosition.x);
+	fruitRect.top = static_cast<int>(fruitPosition.y);
 
 	if (snakeRect.intersects(fruitRect)) {
 		snake->incrementLength();
