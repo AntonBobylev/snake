@@ -1,5 +1,7 @@
 # Snake: The Game
 
+**IN DEVELOPMENT YET!**
+
 My snake game implementation using OOP features of C++ programming language with encapsulation, inheritance and polymorphism. 
 
 Free to use.
@@ -7,6 +9,13 @@ Free to use.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25329821/164027599-c7eceb57-3115-4c0c-83e8-add864c2b603.png" />
 </p>
+
+# TODO LIST:
+- Refactor basic class Entity.
+- Make the snake speed.
+- Refactor PhysicsManager class
+- Refactor FruitEntity class:
+    - generateRandomPosition() function
 
 # Install
 
