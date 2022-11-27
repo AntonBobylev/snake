@@ -1,13 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../GameEntities/SnakeEntity/SnakeEntity.hpp"
-#include "../GameEntities/FruitEntity/FruitEntity.hpp"
+#include "../GameEntities/SnakeEntity/Snake.hpp"
+#include "../GameEntities/FruitEntity/Fruit.hpp"
 #include "../PhysicsManager/PhysicsManager.hpp"
 #include <Windows.h>
 
 class SfmlWindow {
 public:
-	SfmlWindow();
+	SfmlWindow() = delete;
 	SfmlWindow(const char* appName);
 	~SfmlWindow();
 
@@ -29,7 +29,7 @@ private:
 	
 private:
 	// Events
-	
+
 	void eventClose(); // handle to close window
 	void eventMouse(); // handle of mouse events
 	void eventKeyboard(); // handle of keyboard events
@@ -47,7 +47,7 @@ private:
 	sf::Color m_defaultWindowColor;
 
 private:
-	SnakeEntity m_snake;
-	FruitEntity m_fruit;
+	Snake m_snake;
+	Fruit m_fruit;
 	PhysicsManager m_physicsManager;
 };

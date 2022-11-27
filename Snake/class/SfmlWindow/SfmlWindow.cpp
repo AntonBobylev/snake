@@ -1,24 +1,12 @@
 #include "SfmlWindow.hpp"
 
-SfmlWindow::SfmlWindow()
-	: m_windowWidth(config::WINDOW_WIDTH)
-	, m_windowHeight(config::WINDOW_HEIGHT)
-	, m_window(sf::VideoMode(config::WINDOW_WIDTH, config::WINDOW_HEIGHT), "App")
-	, m_event()
-	, m_snake()
-	, m_fruit()
-	, m_physicsManager()
-{
-	this->init();
-}
-
 SfmlWindow::SfmlWindow(const char* appName)
 	:m_windowWidth(config::WINDOW_WIDTH)
 	,m_windowHeight(config::WINDOW_HEIGHT)
 	,m_window(sf::VideoMode(config::WINDOW_WIDTH, config::WINDOW_HEIGHT), appName)
 	,m_event()
 	,m_snake()
-	,m_fruit()
+	,m_fruit(&this->m_snake)
 	,m_physicsManager()
 {
 	this->init();
@@ -43,9 +31,6 @@ void SfmlWindow::update()
 {
 	this->m_snake.update();
 	this->m_fruit.update();
-	if (this->m_fruit.isGenerationNeeded()) {
-		this->m_fruit.generateRandomPosition(&this->m_snake);
-	}
 	this->m_physicsManager.checkSnakeCollisions(&this->m_snake, &this->m_fruit);
 }
 
@@ -77,7 +62,8 @@ void SfmlWindow::renderWindow()
 	this->clearWindow(this->m_defaultWindowColor);
 	this->renderEntities();
 	this->m_window.display();
-	Sleep(250);
+
+	Sleep(250); // TODO: remove it
 }
 
 void SfmlWindow::renderEntities()
@@ -85,13 +71,12 @@ void SfmlWindow::renderEntities()
 	//Snake
 	for (int i = 0; i < this->m_snake.getSnakeLength(); i++) {
 		this->m_snake.setEntityPosition(
-			this->m_snake.m_snakeCoordinates[i].x ,
-			this->m_snake.m_snakeCoordinates[i].y
+			this->m_snake.m_snakePartsCoordinates[i].x ,
+			this->m_snake.m_snakePartsCoordinates[i].y
 		);
 		this->m_window.draw(this->m_snake.getEntitySprite());
 	}
 	
-
 	//Fruit
 	this->m_window.draw(this->m_fruit.getEntitySprite());
 }
@@ -153,6 +138,4 @@ void SfmlWindow::eventKeyboard()
 }
 
 void SfmlWindow::handleLeftMouseReleased()
-{
-
-}
+{ }

@@ -1,5 +1,6 @@
 #pragma once
 #include "../GameEntity.h"
+#include "../SnakeEntity/Snake.hpp"
 
 enum class Direction {
 	RIGHT = 0,
@@ -8,29 +9,34 @@ enum class Direction {
 	UP
 };
 
-const int16_t m_snakeMaxLength = 100;
-
-class SnakeEntity : public GameEntity {
+class Snake : public GameEntity {
 public:
-	SnakeEntity();
-	~SnakeEntity() {};
+	Snake();
+	~Snake() {};
 
 public:
-	int16_t getSnakeDirection() const noexcept;
-	Direction getSnakeDirectionEnum() const noexcept;
+	void update() noexcept;
+
+public:
 	void setSnakeDirection(Direction direction) noexcept;
+	int16_t getSnakeDirection() const noexcept;
+
+	Direction getSnakeDirectionEnum() const noexcept;
+
 	Point getEntityPosition() const noexcept;
 
-	void update();
+	const Point getSnakeHeadPosition() const noexcept;
+	const Point* getSnakePartsCoordinates() const noexcept;
+
+	int16_t getSnakeLength() const noexcept { return this->m_snakeLength; }
 
 	void incrementLength() noexcept { this->m_snakeLength++; }
-	int16_t getSnakeLength() const noexcept { return this->m_snakeLength; }
 
 private:
 	void moveSnakeParts();
 
 public:
-	Point m_snakeCoordinates[m_snakeMaxLength];
+	Point m_snakePartsCoordinates[config::SNAKE_MAX_LENGTH];
 
 private:
 	Direction m_direction;

@@ -1,6 +1,6 @@
 #pragma once
-#include "../GameEntities/SnakeEntity/SnakeEntity.hpp"
-#include "../GameEntities/FruitEntity/FruitEntity.hpp"
+#include "../GameEntities/SnakeEntity/Snake.hpp"
+#include "../GameEntities/FruitEntity/Fruit.hpp"
 
 class PhysicsManager {
 public:
@@ -8,5 +8,12 @@ public:
 	~PhysicsManager() {}
 
 public:
-	void checkSnakeCollisions(SnakeEntity* snake, FruitEntity* fruit);
+	void checkSnakeCollisions(Snake* snake, Fruit* fruit);
+
+private:
+	void checkSnakeIntersectsFruit(Snake* snake, Fruit* fruit);
+
+private:
+	template<typename T>
+	bool isRectIntersectsRect(const T& first, const T& second);
 };

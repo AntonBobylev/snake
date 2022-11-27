@@ -1,27 +1,37 @@
 #include "PhysicsManager.hpp"
 
-void PhysicsManager::checkSnakeCollisions(SnakeEntity* snake, FruitEntity* fruit)
+void PhysicsManager::checkSnakeCollisions(Snake* snake, Fruit* fruit)
+{
+	checkSnakeIntersectsFruit(snake, fruit);
+
+	// Paste new collisions tests here in future
+	// Like: snake parts collissions, snake head and border of the screen collisions
+}
+
+void PhysicsManager::checkSnakeIntersectsFruit(Snake* snake, Fruit* fruit)
 {
 	GameEntity::Point snakePosition = snake->getEntityPosition();
 	GameEntity::Point fruitPosition = fruit->getEntityPosition();
 
-	sf::Rect<int> snakeRect(snake->getEntitySprite().getTextureRect());
+	sf::IntRect snakeRect = snake->getEntityTextureRect();
 
-	// TODO: refactoring is needed. static_cast should be removed
-	snakeRect.left = static_cast<int>(snakePosition.x);
-	snakeRect.top = static_cast<int>(snakePosition.y);
+	snakeRect.left = snakePosition.x;
+	snakeRect.top = snakePosition.y;
 
-	sf::Rect<int> fruitRect(fruit->getEntitySprite().getTextureRect());
+	sf::IntRect fruitRect = fruit->getEntityTextureRect();
 
-	// TODO: refactoring is needed. static_cast should be removed
-	fruitRect.left = static_cast<int>(fruitPosition.x);
-	fruitRect.top = static_cast<int>(fruitPosition.y);
+	fruitRect.left = fruitPosition.x;
+	fruitRect.top = fruitPosition.y;
 
-	if (snakeRect.intersects(fruitRect)) {
+	if (this->isRectIntersectsRect(snakeRect, fruitRect)) {
 		snake->incrementLength();
 
-		//TODO: Maybe decrement game speed ???
-
-		fruit->generateRandomPosition(snake);
+		fruit->generateRandomPosition();
 	}
+}
+
+template<typename T>
+inline bool PhysicsManager::isRectIntersectsRect(const T& first, const T& second)
+{
+	return first.intersects(second);
 }
