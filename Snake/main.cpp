@@ -2,7 +2,7 @@
 
 int main()
 {
-	SfmlWindow mainWindow{ "Snake: the Game" };
+	SfmlWindow mainWindow{ config::APPLICATION_NAME.c_str()};
 	mainWindow.mainLoop();
 	return 0;
 }

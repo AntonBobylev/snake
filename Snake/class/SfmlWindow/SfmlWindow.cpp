@@ -55,6 +55,11 @@ void SfmlWindow::init()
 {
 	this->m_defaultWindowColor = sf::Color(26, 28, 36);
 	srand(NULL);
+
+	sf::Image icon;
+	if (icon.loadFromFile(config::APPLICATION_ICON_PATH)) {
+		this->m_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+	}
 }
 
 void SfmlWindow::renderWindow()
