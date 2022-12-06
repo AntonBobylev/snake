@@ -11,11 +11,15 @@ Free to use.
 </p>
 
 # TODO LIST:
-- Refactor basic class Entity.
-- Make the snake speed.
-- Refactor PhysicsManager class
-- Refactor FruitEntity class:
-    - generateRandomPosition() function
+- Start of the game:
+    - Hello screen (main menu).
+- The end of the game:
+    - Snake intersects itself part.
+    - Snake intersects border of the screen.
+    - Maximum snake length has been exceeded.
+- Score mechanics.
+- Snake
+    - Develop the snake speed.
 
 # Install
 
