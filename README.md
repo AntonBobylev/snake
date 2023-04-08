@@ -1,5 +1,7 @@
 # Snake: The Game
 
+**04/08/2023 -- ABANDONED :(**
+
 **IN DEVELOPMENT YET!**
 
 My snake game implementation using OOP features of C++ programming language with encapsulation, inheritance and polymorphism. 
